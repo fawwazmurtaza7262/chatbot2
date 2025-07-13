@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script.js"></script>
+  <title>ChatBot</title>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <h2>ChatBot</h2>
+  </div>
+
+  <section id="demo">
+    <h1 style="text-align: center;">Try it yourself</h1>
+    <p style="text-align: center;">Experience our chatbot in action. Start a conversation and see how intelligent responses can be.</p>
+  
+    <div class="chatbot-wrapper">
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="bot-icon">🤖</div>
+          <div class="bot-info">
+            <h3>ChatBot AI</h3>
+            <p>Online • Ready to help</p>
+          </div>
+        </div>
+  
+        <div class="chat-box" id="chat-box">
+          <div class="bot-message">
+            <div class="bot-icon-small">🤖</div>
+            <div class="message">Hi there! I'm your AI assistant. How can I help you today?</div>
+          </div>
+          <div class="timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+        </div>
+  
+        <div class="chat-input">
+          <input type="text" id="user-input" placeholder="Please Type your message here.." />
+          <button onclick="handleUserInput()">➤</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    const responses = {
+      "hello": "Hi! How can I help you today?",
+      "how are you": "I'm just code, but I'm functioning perfectly!",
+      "what can you do": "I can simulate a conversation with pre-set responses. Try asking me something!",
+      "bye": "Goodbye! Have a great day!",
+      "default": "Sorry, I don't understand that yet. Try something else."
+    };
+  
+    function getCurrentTime() {
+      return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+  
+    function handleUserInput() {
+      const input = document.getElementById("user-input");
+      const chatBox = document.getElementById("chat-box");
+      const userMessage = input.value.trim();
+      const userMessageLower = userMessage.toLowerCase();
+  
+      if (!userMessage) return;
+  
+      // Show user's message
+      const userHtml = `
+        <div class="user-message">
+          <div class="message">${userMessage}</div>
+          <div class="timestamp">${getCurrentTime()}</div>
+        </div>
+      `;
+      chatBox.innerHTML += userHtml;
+  
+      // Get bot's response
+      const botReply = responses[userMessageLower] || responses["default"];
+      const botHtml = `
+        <div class="bot-message">
+          <div class="bot-icon-small">🤖</div>
+          <div class="message">${botReply}</div>
+          <div class="timestamp">${getCurrentTime()}</div>
+        </div>
+      `;
+      chatBox.innerHTML += botHtml;
+  
+      // Clear input and scroll
+      input.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+  
+
+<section id="contact">
+  <h1 style="text-align:center">You can contact me at fawwazmurtaza635@gmail.com</h1>
+
+</section>
+
+</body>
+</html>
