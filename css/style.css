@@ -20,7 +20,14 @@
   /* Section styling */
   section {
     padding: 40px 20px;
+    background-color: gray;
   }
+
+  #demo h1, p{
+    color: white;
+  }
+
+
   
   /* Chatbot container */
   .chatbot-wrapper {
